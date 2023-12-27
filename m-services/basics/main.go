@@ -74,3 +74,6 @@ func main() {
 	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
 	s.Shutdown(ctx)
 }
+
+//swagger
+///// go get -u github.com/go-swagger/go-swagger/cmd/swagger
