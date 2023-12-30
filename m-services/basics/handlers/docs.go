@@ -15,7 +15,7 @@
 // swagger:meta
 package handlers
 
-import "github.com/helloabhii/go-only/m-services/data"
+import "github.com/PacktPublishing/Building-Microservices-with-Go-Second-Edition/product-api/8_validation/data"
 
 //
 // NOTE: Types defined here are purely for documentation purposes
@@ -67,7 +67,7 @@ type productParamsWrapper struct {
 	Body data.Product
 }
 
-// swagger:parameters updateProduct
+// swagger:parameters listSingleProduct deleteProduct
 type productIDParamsWrapper struct {
 	// The id of the product for which the operation relates
 	// in: path
