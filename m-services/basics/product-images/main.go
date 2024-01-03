@@ -10,8 +10,9 @@ import (
 	gohandlers "github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	hclog "github.com/hashicorp/go-hclog"
-
+	"github.com/nicholasjackson/building-microservices-youtube/product-images/handlers"
 	"github.com/nicholasjackson/env"
+	"github.comhelloabhii/m-services/product-images/files"
 )
 
 var bindAddress = env.String("BIND_ADDRESS", false, ":9091", "Bind address for the server")
@@ -42,6 +43,7 @@ func main() {
 
 	// create the handlers
 	fh := handlers.NewFiles(stor, l)
+	mw := handlers.GzipHandler{}
 
 	// create a new serve mux and register the handlers
 	sm := mux.NewRouter()
@@ -59,6 +61,7 @@ func main() {
 		"/images/{id:[0-9]+}/{filename:[a-zA-Z]+\\.[a-z]{3}}",
 		http.StripPrefix("/images/", http.FileServer(http.Dir(*basePath))),
 	)
+	gh.Use(mw.GzipMiddleware)
 
 	// create a new server
 	s := http.Server{
